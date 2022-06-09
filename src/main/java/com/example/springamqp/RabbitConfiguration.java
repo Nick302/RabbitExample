@@ -6,7 +6,6 @@ import org.springframework.amqp.rabbit.connection.CachingConnectionFactory;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitAdmin;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.amqp.rabbit.listener.SimpleMessageListenerContainer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -48,27 +47,27 @@ public class RabbitConfiguration {
     }
 
     @Bean
-    public DirectExchange directExchange(){
+    public DirectExchange directExchange() {
         return new DirectExchange("exchange-example-4");
     }
 
     @Bean
-    public Binding errorBinding1(){
+    public Binding errorBinding1() {
         return BindingBuilder.bind(myQueue1()).to(directExchange()).with("error");
     }
 
     @Bean
-    public Binding errorBinding2(){
+    public Binding errorBinding2() {
         return BindingBuilder.bind(myQueue2()).to(directExchange()).with("error");
     }
 
     @Bean
-    public Binding infoBinding(){
+    public Binding infoBinding() {
         return BindingBuilder.bind(myQueue2()).to(directExchange()).with("info");
     }
 
     @Bean
-    public Binding warningBinding(){
+    public Binding warningBinding() {
         return BindingBuilder.bind(myQueue2()).to(directExchange()).with("warning");
     }
 
